@@ -1,0 +1,19 @@
+syntax = "proto3";
+package customerpb;
+option go_package="server/customerpb";
+
+import "annotations.proto";
+
+message GetCustomersRequest {}
+
+message GetCustomerResponse {
+  repeated string customers = 1;
+}
+
+service Customer {
+  rpc GetCustomer(GetCustomersRequest) returns (GetCustomerResponse) {
+    option (google.api.http) = {
+      get: "/customers"
+    };
+  } 
+}
